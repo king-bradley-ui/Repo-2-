@@ -1,0 +1,527 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap');
+
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'NewYorkCustom';
+  src: url('../../Fonti/Fonts/NewYork.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.background-iframe {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: -1;
+    pointer-events: none;
+	opacity: 0.85;
+}
+
+
+body {
+	min-height: 100vh;
+	background-color: black;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1.25rem 0 2rem;
+	font-family: 'NewYorkCustom', serif;
+	position: relative;
+    z-index: 0;
+}
+
+
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.45);
+	z-index: -1;
+}
+
+.container-title {
+	width: min(92vw, 760px);
+	margin: 0 auto;
+	padding: 0.5rem 1rem 0;
+	text-align: center;
+	font-size: 25px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	color: white;
+	position: relative;
+	z-index: 1;
+}
+
+
+.container-title h1 {
+  font-family: 'NewYorkCustom', serif;
+  font-weight: 400;
+  color: white;
+}
+
+
+.icon-title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.sigma-circle {
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50%;
+	border: 2px solid #ff8c00;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2.5rem;
+	color: #ff8c00;
+	font-weight: bold;
+	box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 1rem;
+    color: #cccccc;
+}
+
+
+
+/* La linea retta */
+.header-separator {
+	border: 1px solid whitesmoke;
+	height: 1px;
+	background: #333; 
+	margin: 30px auto; 
+	position: relative;
+	overflow: visible;
+	width: 65%; 
+}
+
+.container-abstract {
+	color: white;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	width: min(92vw, 760px);
+	margin: 1.25rem auto 0;
+	padding: 1.5rem;
+	font-size: 1.05rem;
+	line-height: 1.8;
+    font-family: 'Lora', serif;
+	border: 2px solid #ff8c00;
+	border-radius: 1rem;
+	background-color: rgba(0, 0, 0, 0.4);
+	box-shadow: 0 0 20px rgba(255, 140, 0, 0.15), inset 0 0 20px rgba(255, 140, 0, 0.05);
+	backdrop-filter: blur(5px);
+}
+
+.container-abstract p {
+	margin: 0;
+}
+
+
+.container-progress_bar-estetica,
+.container-formula_del_giorno,
+.container-start_quiz-btn {
+	width: min(92vw, 760px);
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 1rem;
+}
+
+
+.container-progress_bar-estetica {
+	display: grid;
+	gap: 0.55rem;
+	margin-top: 3rem;
+	text-align: center;
+	align-items: center;
+}
+
+
+.container-progress_bar-estetica progress {
+	width: 100%;
+	height: 0.75rem;
+	border-radius: 999px;
+	overflow: hidden;
+}
+
+
+.progress-bar-heading,
+.progress-bar-footer {
+	display: grid;
+	grid-template-columns: auto auto;
+	align-items: center;
+	width: 100%;
+	column-gap: 0.75rem;
+}
+
+
+.progress-bar-heading {
+	justify-content: space-between;
+	padding: 0 0.1rem;
+}
+
+
+.progress-bar-footer {
+	justify-content: space-between;
+	padding: 0 0.1rem;
+}
+
+
+.progress-bar-label,
+.progress-bar-boundary {
+	font-size: 0.8rem;
+	letter-spacing: 0.18em;
+	white-space: nowrap;
+}
+
+
+.progress-bar-label-right,
+.progress-bar-boundary-right {
+	justify-self: end;
+}
+
+.progress-bar-label-right {
+	font-family: 'Montserrat',sans-serif;
+}
+
+.container-formula_del_giorno {
+	width: min(92vw, 760px);
+	margin-top: 4rem;
+	padding: 2rem 1.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	border: 2px solid #ff8c00;
+	border-radius: 1rem;
+	background-color: rgba(0, 0, 0, 0.4);
+	box-shadow: 0 0 20px rgba(255, 140, 0, 0.15), inset 0 0 20px rgba(255, 140, 0, 0.05);
+	backdrop-filter: blur(5px);
+	color: white;
+}
+
+.formula_del_giorno-heading {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 0.9rem;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: #ff8c00;
+	margin: 0;
+}
+
+.formula_del_giorno-formula {
+	font-family: 'NewYorkCustom', serif;
+	font-size: 3rem;
+	font-weight: 400;
+	color: white;
+	margin: 0.5rem 0 0;
+	line-height: 1.2;
+	text-align: center;
+}
+
+.formula_del_giorno-description {
+	font-family: 'Lora', serif;
+	font-size: 0.95rem;
+	color: #cccccc;
+	line-height: 1.6;
+	text-align: center;
+	margin: 0.5rem 0 0;
+}
+
+
+.container-start_quiz-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 2rem;
+}
+
+
+.container-progress_bar-estetica progress::-webkit-progress-bar {
+    background: rgba(255, 255, 255, 0.12);
+	border-radius: 999px;
+}
+
+
+.container-progress_bar-estetica progress::-webkit-progress-value {
+	background: linear-gradient(90deg, #7c3aed, #22c55e);
+	border-radius: 999px;
+}
+
+
+.container-progress_bar-estetica progress::-moz-progress-bar {
+	background: linear-gradient(90deg, #7c3aed, #22c55e);
+	border-radius: 999px;
+}
+
+
+
+.start_quiz-btn {
+	margin-top: 4rem;
+	padding: 1rem 2.5rem;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 0.75rem;
+	background: linear-gradient(135deg, #ff8c00, #ff6b00);
+	color: white;
+	border: 2px solid rgba(255, 140, 0, 0.5);
+	font-size: 1.1rem;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	cursor: pointer;
+	box-shadow: 0 8px 25px rgba(255, 140, 0, 0.35), 0 0 20px rgba(255, 140, 0, 0.15);
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+.start_quiz-btn::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.1);
+	transition: left 0.3s ease;
+}
+
+.start_quiz-btn:hover {
+	box-shadow: 0 12px 35px rgba(255, 140, 0, 0.45), 0 0 30px rgba(255, 140, 0, 0.25);
+	transform: translateY(-3px);
+	border-color: rgba(255, 140, 0, 0.8);
+}
+
+.start_quiz-btn:hover::before {
+	left: 100%;
+}
+
+.start_quiz-btn:active {
+	transform: translateY(-1px);
+	box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dialogSlideInCentered {
+	from {
+		opacity: 0;
+		transform: translate(-50%, calc(-50% + 30px));
+	}
+	to {
+		opacity: 1;
+		transform: translate(-50%, -50%);
+	}
+}
+
+@keyframes fadeInBackdrop {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+dialog {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(20, 20, 20, 0.95));
+    color: white;
+    border: 2px solid #ff8c00;
+    border-radius: 1.5rem;
+    padding: 3rem;
+    text-align: center;
+    min-width: min(90vw, 700px);
+    box-shadow: 0 20px 60px rgba(255, 140, 0, 0.3), inset 0 0 30px rgba(255, 140, 0, 0.05);
+	animation: dialogSlideInCentered 0.5s ease-out;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
+    animation: fadeInBackdrop 0.3s ease-out;
+}
+
+
+dialog h2 {
+    font-family: 'NewYorkCustom', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: white;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 1px;
+}
+
+dialog > p {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    color: #cccccc;
+    margin: 0.5rem 0 2.5rem 0;
+    letter-spacing: 0.5px;
+}
+
+.dialog-intro {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    color: #bbbbbb;
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+}
+
+.dialog-opzioni {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(140px, 1fr));
+	gap: 2rem;
+	align-items: start;
+	margin-top: 2.5rem;
+}
+
+.dialog-option-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+	width: 100%;
+    gap: 0.8rem;
+    animation: slideInUp 0.5s ease-out;
+}
+
+.dialog-option-wrapper:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.dialog-option-wrapper:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.dialog-scelta {
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), rgba(255, 140, 0, 0.05));
+    color: #ff8c00;
+    border: 2px solid #ff8c00;
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0), 0 0 30px rgba(255, 140, 0, 0);
+    min-width: 120px;
+}
+
+.dialog-scelta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.dialog-scelta:hover {
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.3), rgba(255, 140, 0, 0.15));
+    color: white;
+    border-color: #ff6b00;
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.4), 0 0 40px rgba(255, 140, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.dialog-scelta:hover::before {
+    left: 100%;
+}
+
+.dialog-scelta:active {
+    transform: translateY(-2px);
+}
+
+.dialog-difficulty {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: #ff8c00;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.dialog-difficulty-label {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    color: #aaaaaa;
+    margin-top: 0.3rem;
+}
+
+.dialog-difficulty-description {
+    font-family: 'Lora', serif;
+    font-size: 0.85rem;
+    color: #888888;
+    font-style: italic;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
+.dialog-chiudi {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    color: #ff8c00;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog-chiudi:hover {
+    color: #ff6b00;
+}
+
+@media (max-width: 760px) {
+	.dialog-opzioni {
+		grid-template-columns: 1fr;
+	}
+}

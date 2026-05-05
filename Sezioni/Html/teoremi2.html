@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Teoremi</title>
+        
+        <link rel="stylesheet" href="../Css/teoremi2_style.css">
+
+        <!-- uso MathJax per la visualizzazione degli enunciati matematici -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    
+    <body>
+        
+    <iframe src="../../Fonti/animated-background.html" style="position:fixed; top:0; left:0; width:100%; height:100%; border:none; z-index:-1;"></iframe>
+    <!-- parte riguardante il titolo --> 
+    <div class="container-title">
+        <h2>Math-Rounder</h2>
+        <hr class="header-separator">
+    </div>
+
+    <!-- progress bar -->
+    <div class="container-progress_bar">
+        <div class="progress-container">
+            <div class="progress-bar" id="quiz-progress-bar" style="width: 0%;"></div>
+            <div class="progress-bar_Nquestion"> 
+                Domanda <span id="current-question">  </span> di <span id="total-questions">  </span>
+            </div>
+        </div>
+    </div>
+
+
+     <!-- parte del container delle domande e delle risposte -->
+     <div class="container-qa_box">
+        <!-- box delle domande -->
+        <div class="container-question_box">
+            <h1></h1>
+        </div>
+            
+        <!-- box delle rispote -->
+        <div class="container-answer_box">
+
+            <div class="answer_options">
+                <button type="button" class="answer-btn"><span class="option-text">A) Teorema 1</span></button>
+                <button type="button" class="answer-btn"><span class="option-text">B) Teorema 2</span></button>
+                <button type="button" class="answer-btn"><span class="option-text">C) Teorema 3</span></button>
+                <button type="button" class="answer-btn"><span class="option-text">D) Teorema 4</span></button>
+            </div>
+        </div>
+     </div>
+
+     <!-- bottone per la domanda successiva -->
+    <div class="container-next_btn">
+        <button class="next-btn" type="button">Domanda Successiva</button>
+    </div>
+
+
+     <script type="module" src="../Js/teoremi_script.js"></script>
+
+</body>
+</html>

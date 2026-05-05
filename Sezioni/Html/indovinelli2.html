@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indovinelli</title>
+
+    <link rel="stylesheet" href="../Css/indovinelli2_style.css">
+
+    <!-- uso MathJax nel caso gli indovinelli contengano formule -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <iframe src="../../Fonti/animated-background-indovinelli.html" style="position:fixed; top:0; left:0; width:100%; height:100%; border:none; z-index:-1;"></iframe>
+
+    <!-- parte riguardante il titolo -->
+    <div class="container-title">
+        <h2>Math-Rounder</h2>
+        <hr class="header-separator">
+    </div>
+
+    <!-- progress bar -->
+    <div class="container-progress_bar">
+        <div class="progress-container">
+            <div class="progress-bar" id="quiz-progress-bar" style="width: 0%;"></div>
+        </div>
+        <div class="progress-bar_Nquestion">
+            Domanda <span id="current-question">1</span> di <span id="total-questions">1</span>
+        </div>
+    </div>
+
+    <!-- parte del container delle domande e della risposta -->
+    <div class="container-qa_box">
+        <!-- box della domanda -->
+        <div class="container-question_box">
+            <h1 id="riddle-question">Sono pieno di chiavi ma non apro nessuna porta. Chi sono?</h1>
+        </div>
+
+        <!-- box della risposta rivelata -->
+        <div class="container-answer_box">
+            <div class="answer_reveal" id="riddle-answer-box" aria-live="polite">
+                <p id="riddle-answer">Una tastiera.</p>
+            </div>
+        </div>
+
+        <div class="container-score_box">
+            <p>Hai risposto in maniera corretta?</p>
+            <button class="score-btn" id="add-point-btn" type="button">Aggiungi punto</button>
+            <div class="score-current">Punteggio attuale: <span id="current-score">0</span></div>
+        </div>
+    </div>
+
+    <!-- bottone per svelare risposta -->
+    <div class="container-next_btn">
+        <button class="next-btn" id="reveal-answer-btn" type="button">Svela risposta</button>
+    </div>
+
+    <script type="module" src="../Js/indovinelli_script.js"></script>
+
+
+    
+
+</body>
+</html>

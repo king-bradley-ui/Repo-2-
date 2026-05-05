@@ -1,0 +1,65 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'NewYorkCustom';
+    src: url('../../Fonti/Fonts/NewYork.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    font-synthesis: none;
+    color: white;
+}
+
+#calculator {
+    margin-top: 2rem;
+    width: 60vw;
+    height: 60vh;
+    border: 5px solid orange;
+    box-shadow: 0 0 10px orange;
+}
+
+
+/* Centro contenuto titolo */
+.container-title {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    font-size: 25px;
+    font-family: 'NewYorkCustom', serif;
+    color: white;
+    position: relative;
+    z-index: 1;
+    
+}
+
+/* creo questo codice per rendere la `o` del titolo piu congrua al tipo di font che ho utilizzato*/
+.container-title h1 {
+    font-family: 'NewYorkCustom', serif;
+    font-weight: 400;
+    color: white;
+}
+
+/* Stile per l'abstract */
+.abstract {
+    text-align: center;
+    width: 80%;
+    margin: 2rem auto;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+

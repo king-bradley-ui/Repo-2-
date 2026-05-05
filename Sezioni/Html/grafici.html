@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafico</title>
+    
+    <link rel="stylesheet" href="../Css/grafici_style.css">
+    <script src="https://www.desmos.com/api/v1.11/calculator.js?apiKey=eacc3cb65fd346e8a547f43c05b97ff7"></script>
+</head>
+<body>
+
+    <div class="container-title">
+        <h1>Math-Rounder</h1>
+        <hr class="header-separator">
+    </div>
+
+    <div class="abstract">
+        In questa sezione dedicata interamente ai grafici, avrai la possibilità di visualizzare le funzioni matematiche in modo interattivo sfruttando la potenza del calcolatore grafico fornito da Desmos. Cimentati in questo mondo super affascinante!
+    </div>
+
+    <div id="calculator"></div>   
+    <script>
+    var elt = document.getElementById('calculator');
+    var calculator = Desmos.GraphingCalculator(elt);
+    </script>
+
+    
+</body>
+</html>

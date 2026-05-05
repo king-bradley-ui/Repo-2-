@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formule</title>
+    
+    <link rel="stylesheet" href="../css/formule_style.css">
+
+    <script>
+        MathJax = {
+            tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            startup: {
+            typeset: false  
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    
+    <iframe class="background-iframe" src="../../Fonti/animated-background-formule(2).html">
+    </iframe>
+    
+    <!-- parte riguardante il titolo --> 
+    <div class="container-title">
+        <div class="icon-title">
+            <div class="sigma-circle">Σ</div>
+        </div>
+        <div class="section-title">
+            SEZIONE
+        </div>
+        <h1>Formule</h1>
+        <hr class="header-separator">
+    </div>
+
+
+    <!-- parte riguardante l'introduzione alla sezione -->
+     <div class="container-abstract">
+        <p>
+            Credi di poterti definire un vero 'Math-Rounder' se non sai quali sono le formule che hanno fatto la storia e che sono alla base di fenomeni anche non strettamente legati alla matematica? 
+            Vediamo se riesci a riconoscere a quale formula corrispondono i seguenti enunciati che vedrai!  
+        </p>
+     </div>
+
+     <div class="container-progress_bar-estetica">
+        <div class="progress-bar-heading">
+            <span class="progress-bar-label progress-bar-label-left">PROGRESSIONE</span>
+            <span class="progress-bar-label progress-bar-label-right">Scegli tu quante domande!</span>
+        </div>
+
+        <progress value="0" max="100"></progress>
+
+        <div class="progress-bar-footer">
+            <span class="progress-bar-boundary progress-bar-boundary-left">Inizio</span>
+            <span class="progress-bar-boundary progress-bar-boundary-right">Fine</span>
+        </div>
+     </div>
+
+
+     <div class="container-formula_del_giorno">
+        <h3 class="formula_del_giorno-heading">Formula in Evidenza di oggi</h3>
+        <div class="formula_del_giorno-formula" id="formula-content">E = mc²</div>
+        <div class="formula_del_giorno-description" id="formula-description"> qui ci dovrò mettere un link che si colleghi alla formula in questione</div>
+     </div>
+
+
+     <!-- bottone per avviare il quiz e trasferirmi alla pagina "teoremi2.html" -->
+    <div class="container-start_quiz-btn">
+        <button class="start_quiz-btn"> Start quiz </button>
+    </div>
+
+
+    <!-- finestra di dialogo per scegliere la quantità di domande -->
+    <dialog id="dialog-domande">
+        <h2>Scegli il Tuo Quiz</h2>
+        <p>Seleziona quante domande vuoi affrontare</p>
+
+        <div class="dialog-intro">
+            Ogni livello di difficoltà ti porterà a scoprire sfaccettature diverse della matematica. Scegli quella che rispecchia il tuo livello attuale!
+        </div>
+
+        <div class="dialog-opzioni">
+            <div class="dialog-option-wrapper">
+                <button class="dialog-scelta" data-n="10">10</button>
+                <div class="dialog-difficulty"> FACILE</div>
+                <div class="dialog-difficulty-label">Principiante</div>
+                <div class="dialog-difficulty-description">Inizia il tuo percorso</div>
+            </div>
+            <div class="dialog-option-wrapper">
+                <button class="dialog-scelta" data-n="20">20</button>
+                <div class="dialog-difficulty"> MEDIO</div>
+                <div class="dialog-difficulty-label">Intermedio</div>
+                <div class="dialog-difficulty-description">Metti alla prova la tua abilità</div>
+            </div>
+            <div class="dialog-option-wrapper">
+                <button class="dialog-scelta" data-n="30">30</button>
+                <div class="dialog-difficulty"> DIFFICILE</div>
+                <div class="dialog-difficulty-label">Esperto</div>
+                <div class="dialog-difficulty-description">Dimostra di essere un vero esperto</div>
+            </div>
+        </div>
+
+        <button class="dialog-chiudi" id="dialog-chiudi">✕</button>
+    </dialog>
+
+    <script>
+        const params   = new URLSearchParams(window.location.search);
+        const nDomande = parseInt(params.get('domande')) || 30;
+    </script>
+
+     <script type="module" src="../Js/formule_script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-start: clamp(300px, 56vh, 460px);
+}
+
+@font-face {
+  font-family: 'NewYorkCustom';
+  src: url('./Fonti/Fonts/NewYork.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background-color: black;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#background {
+  position: fixed;
+  top: var(--bg-start);
+  left: -14vw;
+  width: 128vw;
+  height: calc(100vh - var(--bg-start));
+  min-height: 220px;
+  z-index: 0;
+}
+
+/* Centra il contenuto del titolo */
+.container-title {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    font-size: 25px;
+    font-family: 'NewYorkCustom', serif;
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+.container-title h1 {
+  font-family: 'NewYorkCustom', serif;
+  font-weight: 400;
+  color: white;
+}
+
+/* La linea retta che separa il titolo dal resto del sito*/
+.header-separator {
+  border: 1px solid whitesmoke;
+  height: 1px;
+  background: #333; 
+  margin: 30px auto; 
+  position: relative;
+  overflow: visible;
+  width: 65%; 
+}
+
+/* Il rombo */
+.header-separator::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    
+    width: 12px;
+    height: 12px;
+    background-color: black; 
+    border: 1px  white solid; 
+}
+
+.abstract {
+  color: white;
+  justify-content: center;
+  width: 60%;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Il contenitore delle icone */
+.sezioni-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%; 
+  width: 100%; 
+  max-width: 800px; 
+  margin: 25px auto 0; 
+  position: relative;
+  z-index: 10;
+  margin-top: 5rem;
+  opacity: 0;
+  transform: translateY(-32px);
+  animation: sectionDrop 2s ease-out 2s forwards;
+  will-change: transform, opacity;
+}
+
+
+.icon-card {
+  width: 10%; 
+  min-width: 10px; 
+  aspect-ratio: 1 / 1; 
+  position: relative;
+  
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  opacity: 0;
+  transform: translateY(-18px);
+  animation: cardDrop 0.65s ease-out forwards;
+}
+
+.icon-card:nth-child(1) {
+  animation-delay: 0.35s;
+}
+
+.icon-card:nth-child(2) {
+  animation-delay: 0.48s;
+}
+
+.icon-card:nth-child(3) {
+  animation-delay: 0.61s;
+}
+
+.icon-card:nth-child(4) {
+  animation-delay: 0.74s;
+}
+
+.icon-card:hover {
+  transform: translateY(-10px) scale(1.08);
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  filter: brightness(1.08);
+  z-index: 20;
+}
+
+.icon-card:hover .svg-icon,
+.icon-card:hover #thm-icon {
+  transform: scale(1.06);
+}
+
+.icon-card:hover .icon-title {
+  color: #ffb36a;
+  letter-spacing: 1.6px;
+}
+
+
+.svg-icon {
+  width: 80%; 
+  height: auto; 
+  margin-bottom: 1%;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+#thm-icon {
+  width: 75%;
+  height: auto;
+  margin-bottom: 1%;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Stile del testo */
+.icon-title {
+  color: #ffffff;
+  font-family: 'Times New Roman', Georgia, serif;
+  font-size: clamp(0.7rem, 2vw, 1rem); 
+  letter-spacing: 1px;
+  font-size: 10px;
+  transition: color 0.25s ease, letter-spacing 0.25s ease, transform 0.25s ease;
+}
+
+/* Segnaposto */
+.placeholder-icon {
+  width: 25%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 5%;
+}
+
+@keyframes sectionDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Background Formule</title>
+  <style>
+    :root {
+      --bg-1: #050505;
+      --bg-2: #111111;
+      --accent-1: rgba(255, 140, 0, 0.22);
+      --accent-2: rgba(255, 179, 71, 0.14);
+      --symbol: rgba(255, 205, 145, 0.2);
+      --line: rgba(255, 190, 120, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 25%, var(--accent-1), transparent 34%),
+        radial-gradient(circle at 76% 80%, var(--accent-2), transparent 38%),
+        linear-gradient(140deg, var(--bg-1), var(--bg-2));
+      font-family: 'Times New Roman', serif;
+    }
+
+    canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="formula-bg"></canvas>
+
+  <script>
+    const canvas = document.getElementById('formula-bg');
+    const ctx = canvas.getContext('2d');
+
+    let w = 0;
+    let h = 0;
+    let dpr = Math.max(1, window.devicePixelRatio || 1);
+
+    const symbols = ['+', '-', '=', '\u221a', '\u03c0', '\u03a3', '\u222b', '\u0394', '\u03b1', '\u03b2', '\u03b8', 'x', 'y', 'f(x)'];
+    const particles = [];
+    const lines = [];
+
+    function resize() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      dpr = Math.max(1, window.devicePixelRatio || 1);
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const pCount = Math.max(28, Math.floor((w * h) / 42000));
+      const lCount = Math.max(12, Math.floor((w * h) / 90000));
+
+      particles.length = 0;
+      lines.length = 0;
+
+      for (let i = 0; i < pCount; i++) {
+        particles.push(makeParticle());
+      }
+      for (let i = 0; i < lCount; i++) {
+        lines.push(makeLine());
+      }
+    }
+
+    function rand(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function pick(arr) {
+      return arr[(Math.random() * arr.length) | 0];
+    }
+
+    function makeParticle() {
+      return {
+        x: rand(0, w),
+        y: rand(0, h),
+        vx: rand(-0.1, 0.1),
+        vy: rand(-0.22, -0.06),
+        r: rand(1.2, 2.8),
+        a: rand(0.18, 0.48)
+      };
+    }
+
+    function makeLine() {
+      const length = rand(60, 200);
+      return {
+        x: rand(-0.2 * w, 1.1 * w),
+        y: rand(0, h),
+        length,
+        angle: rand(-0.4, 0.4),
+        speed: rand(0.12, 0.35),
+        width: rand(0.7, 1.4),
+        alpha: rand(0.08, 0.22)
+      };
+    }
+
+    function drawGrid() {
+      const step = Math.max(44, Math.min(74, w / 20));
+      ctx.strokeStyle = 'rgba(255, 170, 90, 0.06)';
+      ctx.lineWidth = 1;
+
+      for (let x = -step; x <= w + step; x += step) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+
+      for (let y = -step; y <= h + step; y += step) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+    }
+
+    function drawLines() {
+      for (const line of lines) {
+        ctx.save();
+        ctx.translate(line.x, line.y);
+        ctx.rotate(line.angle);
+        ctx.strokeStyle = `rgba(255, 190, 120, ${line.alpha})`;
+        ctx.lineWidth = line.width;
+        ctx.beginPath();
+        ctx.moveTo(-line.length / 2, 0);
+        ctx.lineTo(line.length / 2, 0);
+        ctx.stroke();
+        ctx.restore();
+
+        line.y += line.speed;
+        line.x += Math.sin(line.y * 0.004) * 0.15;
+        if (line.y - line.length > h + 24) {
+          line.y = -line.length - rand(0, 200);
+          line.x = rand(-0.2 * w, 1.1 * w);
+        }
+      }
+    }
+
+    function drawSymbols(t) {
+      const count = 14;
+      for (let i = 0; i < count; i++) {
+        const sx = ((i * 181.37 + t * 0.018) % (w + 260)) - 130;
+        const sy = (h * (0.12 + (i % 7) * 0.12)) + Math.sin(t * 0.0015 + i) * 22;
+        const size = 18 + (i % 5) * 4;
+
+        ctx.save();
+        ctx.translate(sx, sy);
+        ctx.rotate(Math.sin(t * 0.0008 + i * 0.7) * 0.08);
+        ctx.fillStyle = 'rgba(255, 205, 145, 0.2)';
+        ctx.font = `${size}px Times New Roman`;
+        ctx.fillText(pick(symbols), 0, 0);
+        ctx.restore();
+      }
+    }
+
+    function drawParticles() {
+      for (const p of particles) {
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255, 170, 90, ${p.a})`;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.y < -10) {
+          p.y = h + 10;
+          p.x = rand(0, w);
+        }
+        if (p.x < -10) p.x = w + 10;
+        if (p.x > w + 10) p.x = -10;
+      }
+    }
+
+    function tick(t) {
+      ctx.clearRect(0, 0, w, h);
+      drawGrid();
+      drawLines();
+      drawSymbols(t || 0);
+      drawParticles();
+      requestAnimationFrame(tick);
+    }
+
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>

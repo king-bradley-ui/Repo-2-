@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #080808;
+        }
+
+        /* ── Canvas ── */
+        canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+
+        /* ── Orb viola bottom-left ── */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .orb--violet {
+            bottom: -120px;
+            left: -80px;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle,
+                rgba(124, 58, 237, 0.22) 0%,
+                rgba(76, 29, 149, 0.10) 40%,
+                transparent 70%
+            );
+            animation: orb-breathe 9s ease-in-out infinite alternate;
+        }
+
+        .orb--orange {
+            top: -100px;
+            right: -60px;
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle,
+                rgba(249, 115, 22, 0.20) 0%,
+                rgba(234, 88, 12, 0.08) 40%,
+                transparent 70%
+            );
+            animation: orb-breathe 7s ease-in-out infinite alternate-reverse;
+        }
+
+        .orb--violet-top {
+            top: 30%;
+            left: -60px;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle,
+                rgba(109, 40, 217, 0.12) 0%,
+                transparent 65%
+            );
+            animation: orb-drift 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes orb-breathe {
+            from { opacity: 0.6; transform: scale(1); }
+            to   { opacity: 1;   transform: scale(1.12); }
+        }
+
+        @keyframes orb-drift {
+            from { transform: translateY(0px) scale(1); }
+            to   { transform: translateY(40px) scale(1.08); }
+        }
+
+        /* ── Strisce top e bottom ── */
+        .stripe-top {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(249,115,22,0.6) 30%,
+                rgba(251,146,60,0.9) 50%,
+                rgba(249,115,22,0.6) 70%,
+                transparent 100%
+            );
+            z-index: 2;
+        }
+
+        .stripe-bottom {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(124,58,237,0.5) 40%,
+                rgba(167,139,250,0.7) 60%,
+                transparent 100%
+            );
+            z-index: 2;
+            opacity: 0.7;
+        }
+
+        /* ── Formule fantasma fluttuanti ── */
+        .formula-ghost {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            color: rgba(249, 115, 22, 0.055);
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        .fg-1 {
+            top: 8%;  left: 5%;
+            font-size: 28px;
+            transform: rotate(-14deg);
+            animation: float-formula 18s ease-in-out infinite alternate;
+        }
+        .fg-2 {
+            top: 18%; right: 8%;
+            font-size: 20px;
+            transform: rotate(9deg);
+            animation: float-formula 22s ease-in-out infinite alternate-reverse;
+        }
+        .fg-3 {
+            top: 42%; left: 3%;
+            font-size: 24px;
+            transform: rotate(-6deg);
+            color: rgba(124, 58, 237, 0.05);
+            animation: float-formula 16s ease-in-out infinite alternate;
+        }
+        .fg-4 {
+            top: 55%; right: 4%;
+            font-size: 18px;
+            transform: rotate(12deg);
+            animation: float-formula 20s ease-in-out infinite alternate-reverse;
+        }
+        .fg-5 {
+            bottom: 22%; left: 8%;
+            font-size: 26px;
+            transform: rotate(-10deg);
+            color: rgba(124, 58, 237, 0.05);
+            animation: float-formula 25s ease-in-out infinite alternate;
+        }
+        .fg-6 {
+            bottom: 10%; right: 6%;
+            font-size: 22px;
+            transform: rotate(7deg);
+            animation: float-formula 19s ease-in-out infinite alternate-reverse;
+        }
+        .fg-7 {
+            top: 72%; left: 45%;
+            font-size: 16px;
+            transform: rotate(-4deg);
+            color: rgba(249, 115, 22, 0.04);
+            animation: float-formula 14s ease-in-out infinite alternate;
+        }
+        .fg-8 {
+            top: 30%; left: 40%;
+            font-size: 32px;
+            transform: rotate(5deg);
+            color: rgba(249, 115, 22, 0.03);
+            animation: float-formula 28s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes float-formula {
+            from { transform: translateY(0px) rotate(var(--r, -10deg)); opacity: 0.6; }
+            to   { transform: translateY(20px) rotate(var(--r, -10deg)); opacity: 1; }
+        }
+
+        /* ── Griglia sottile ── */
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(249,115,22,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(249,115,22,0.025) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Canvas stelle JS -->
+    <canvas id="stars"></canvas>
+
+    <!-- Orb luci -->
+    <div class="orb orb--orange"></div>
+    <div class="orb orb--violet"></div>
+    <div class="orb orb--violet-top"></div>
+
+    <!-- Griglia -->
+    <div class="grid-overlay"></div>
+
+    <!-- Formule fantasma -->
+    <div class="formula-ghost fg-1">∫e<sup style="font-size:0.6em">x</sup> dx = e<sup style="font-size:0.6em">x</sup> + C</div>
+    <div class="formula-ghost fg-2">E = mc²</div>
+    <div class="formula-ghost fg-3">∇ · E = ρ/ε₀</div>
+    <div class="formula-ghost fg-4">F = ma</div>
+    <div class="formula-ghost fg-5">∑<sub style="font-size:0.6em">n=1</sub><sup style="font-size:0.6em">∞</sup> 1/n²</div>
+    <div class="formula-ghost fg-6">a² + b² = c²</div>
+    <div class="formula-ghost fg-7">PV = nRT</div>
+    <div class="formula-ghost fg-8">π</div>
+
+    <!-- Strisce -->
+    <div class="stripe-top"></div>
+    <div class="stripe-bottom"></div>
+
+    <script>
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+
+        let W, H, stars = [];
+
+        function resize() {
+            W = canvas.width  = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+
+        function randomColor() {
+            const palette = [
+                'rgba(255,255,255,',
+                'rgba(249,115,22,',
+                'rgba(251,146,60,',
+                'rgba(167,139,250,',
+                'rgba(192,132,252,'
+            ];
+            return palette[Math.floor(Math.random() * palette.length)];
+        }
+
+        function initStars() {
+            stars = [];
+            const count = Math.floor((W * H) / 5000);
+            for (let i = 0; i < count; i++) {
+                stars.push({
+                    x:       Math.random() * W,
+                    y:       Math.random() * H,
+                    r:       Math.random() * 1.4 + 0.2,
+                    color:   randomColor(),
+                    alpha:   Math.random(),
+                    dAlpha:  (Math.random() * 0.008 + 0.002) * (Math.random() < 0.5 ? 1 : -1),
+                    speed:   Math.random() * 0.12 + 0.02,
+                    dir:     Math.random() * Math.PI * 2
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+
+            for (const s of stars) {
+                // twinkle
+                s.alpha += s.dAlpha;
+                if (s.alpha >= 1)   { s.alpha = 1;  s.dAlpha *= -1; }
+                if (s.alpha <= 0)   { s.alpha = 0;  s.dAlpha *= -1; }
+
+                // drift
+                s.x += Math.cos(s.dir) * s.speed;
+                s.y += Math.sin(s.dir) * s.speed;
+
+                // wrap
+                if (s.x < -5)  s.x = W + 5;
+                if (s.x > W+5) s.x = -5;
+                if (s.y < -5)  s.y = H + 5;
+                if (s.y > H+5) s.y = -5;
+
+                // draw
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = s.color + s.alpha + ')';
+                ctx.fill();
+
+                // glow per le stelle orange/violet più grandi
+                if (s.r > 1.0) {
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.r * 2.5, 0, Math.PI * 2);
+                    ctx.fillStyle = s.color + (s.alpha * 0.15) + ')';
+                    ctx.fill();
+                }
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        resize();
+        initStars();
+        draw();
+
+        window.addEventListener('resize', () => {
+            resize();
+            initStars();
+        });
+    </script>
+
+</body>
+</html>
